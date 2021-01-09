@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Không biết code</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div id="container">
+        <form>
+            <div class="form-group">
+                <label for="code" class="col-form-label">Bạch văn/Mật mã:</label>
+                <input type="text" class="form-control" id="code">
+            </div>
+            <fieldset class="form-group">
+                <legend class="col-form-label">Chế độ:</legend>
+                <div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="mode-encode" id="mode-encode" value="encode" checked>
+                        <label class="form-check-label" for="mode-encode">
+                            Encode (biến bạch văn thành mật mã)
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="mode-decode" id="mode-decode" value="decode">
+                        <label class="form-check-label" for="mode-decode">
+                            Decode (biến mật mã thành bạch văn)
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                <label for="key" class="col-form-label">Key: 1ABC2DEF3GHI4JKL5MNO6PQRS7TUV8WXYZ90</label>
+            </div>
+            <div class="form-group">
+                <label for="rule" class="col-form-label">Quy luật:</label>
+                <div id="rule-btn-container">
+                    <button type="button" class="btn btn-outline-primary">2</button>
+                    <button type="button" class="btn btn-outline-primary">-1</button>
+                    <button type="button" class="btn btn-outline-primary">＋Thêm quy luật</button>
+                </div>
+            </div>
+            <div class="form-group translate-btn-container">
+                <button type="button" class="btn btn-outline-dark" id="translate">Dịch</button>
+            </div>
+            <div class="form-group row">
+                <label for="number-trans" class="col-form-label col-sm-3">Dịch số: </label>
+                <label id="number-trans">...</label>
+            </div>
+            <div class="form-group row">
+                <label for="result" class="col-form-label col-sm-3">Kết quả: </label>
+                <label id="result">...</label>
+            </div>
+            <div class="form-group row">
+                <label for="start-time" class="col-form-label col-sm-3">Thời gian bắt đầu dịch: </label>
+                <label id="start-time">...</label>
+            </div>
+            <div class="form-group row">
+                <label for="end-time" class="col-form-label col-sm-3">Thời gian kết thúc dịch: </label>
+                <label id="end-time">...</label>
+            </div>
+            <div class="form-group row">
+                <label for="steps-count" class="col-form-label col-sm-3">Số bước xử lý: </label>
+                <label id="steps-count">...</label>
+            </div>
+        </form>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>

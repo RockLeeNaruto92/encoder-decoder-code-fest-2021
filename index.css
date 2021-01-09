@@ -1,0 +1,16 @@
+#container{
+    border: solid;
+    margin: 15px;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+#translate {
+    width: 40%;
+}
+
+#translate-btn-container {
+    padding-left: 30%;
+}
