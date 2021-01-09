@@ -27,21 +27,25 @@ $(document).ready(function () {
     });
 
     $("#translate").click(function () {
+        let content = $("#code").val();
         window.startTime = new Date();
         switch (window.mode) {
             case "encode":
+                encode(content);
                 break;
             case "decode":
+                decode(content);
                 break;
             default:
                 throw new Error("Not support");
         }
         window.endTime = new Date();
 
+        $("#number-trans").html(window.numberResult);
+        $("#result").html(window.result);
         $("#start-time").html(window.startTime.getTime());
         $("#end-time").html(window.endTime.getTime());
         $("#steps-count").html(window.stepsCount);
-        
     });
 });
 
@@ -51,8 +55,14 @@ const generateRuleHtml = function (rule) {
 
 const encode = function () {
     console.log("TODO: Encode");
+    window.numberResult = "Encode number result";
+    window.result = "Encode result";
+    window.stepsCount = "sample";
 };
 
 const decode = function () {
     console.log("TODO: decode");
+    window.numberResult = "Decode number result";
+    window.result = "Decode result";
+    window.stepsCount = "sample";
 };
