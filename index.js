@@ -1,5 +1,20 @@
-window.rules = [+2, -3];
+window.rules = [-3, 2];
 window.mode = "encode";
+window.data = {
+    alphabet: '1ABC2DEF3GHI4JKL5MNO6PQRS7TUV8WXYZ90'.split(''),
+    keyboard: {
+        "1": "1",
+        "2": "ABC2",
+        "3": "DEF3",
+        "4": "GHI4",
+        "5":  "JKL5",
+        "6":  "MNO6",
+        "7":  "PQRS7",
+        "8":  "TUV8",
+        "9": "WXYZ9",
+        "0": "0"
+    }
+};
 
 $(document).ready(function () {
     for (var i = 0; i < window.rules.length; i++) {
@@ -27,14 +42,19 @@ $(document).ready(function () {
     });
 
     $("#translate").click(function () {
-        let content = $("#code").val();
+        let contents = $("#code").val().split(".");
+        let contentIndex = 0;
+        let ruleIndex = 0;
+        let resultStr = "";
         window.startTime = new Date();
+        window.stepsCount = 0;
+        window.numberResult = "";
         switch (window.mode) {
             case "encode":
                 encode(content);
                 break;
             case "decode":
-                decode(content);
+                window.result = decode(contents, contentIndex, window.rules, ruleIndex, resultStr);
                 break;
             default:
                 throw new Error("Not support");
@@ -60,9 +80,57 @@ const encode = function () {
     window.stepsCount = "sample";
 };
 
-const decode = function () {
+const decode = function (contents, contentIndex, rules, ruleIndex, resultStr) {
     console.log("TODO: decode");
-    window.numberResult = "Decode number result";
-    window.result = "Decode result";
-    window.stepsCount = "sample";
+    window.stepsCount += 1;
+
+    if (contentIndex >= contents.length) {
+        return resultStr;
+    }
+
+    let newLineIndex = contents[contentIndex].indexOf("\n");
+
+    if (contents[contentIndex] !== "\n" && newLineIndex !== -1) {
+        let items = contents[contentIndex].split("\n");
+        contents.splice(contentIndex, 1, items[0], "\n", items[1]);
+    }
+
+    resultStr += decodeItem(contents[contentIndex], rules[ruleIndex]);
+    
+    console.log(resultStr);
+    let nextContentIndex = contentIndex + 1;
+    let nextRuleIndex = (ruleIndex + 1) % rules.length;
+    if (contents[contentIndex] === "\n") {
+        nextRuleIndex = ruleIndex % rules.length;
+    }
+
+    // apply rule for each content
+    return decode(contents, nextContentIndex, rules, nextRuleIndex, resultStr);
 };
+
+const encodeItem = function (item, rule) {
+    
+
+    return window.data.alphabet[(resIndexInKey + rule) % window.data.alphabet.length];
+};
+
+const decodeItem = function (item, rule) {
+    let res = nokiaToChar(item);
+    window.numberResult += res;
+
+    if (res === " ") {
+        return res;
+    }
+    const resIndexInKey = window.data.alphabet.indexOf(res);
+
+    return window.data.alphabet[(resIndexInKey + rule) % window.data.alphabet.length];
+}
+
+const nokiaToChar = function (val) {
+    if (val === "\n") {
+        return " ";
+    }
+    const key = parseInt(val.split("-")[0]);
+    const pressTimes = val.split("-")[1];
+    return window.data.keyboard[key][parseInt(pressTimes) - 1];
+}
