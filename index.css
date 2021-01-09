@@ -18,3 +18,10 @@
 .btn-rule {
     margin-right: 5px;
 }
+
+#new-rule-input {
+    padding-bottom: 6px;
+    border: solid;
+    border-color: #007bff;
+    height: 38px;
+}
